@@ -20,7 +20,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: Color(0xFF181A20),
+        color: blackBG,
         boxShadow: [
           BoxShadow(
             offset: Offset(0, -15),
@@ -28,10 +28,10 @@ class CustomBottomNavBar extends StatelessWidget {
             color: Color(0xFFDADADA).withOpacity(0.05),
           ),
         ],
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(40),
+        //   topRight: Radius.circular(40),
+        // ),
       ),
       child: SafeArea(
           top: false,

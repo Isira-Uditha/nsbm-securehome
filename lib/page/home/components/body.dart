@@ -1,5 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:home_security_system/core/activity.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class _BodyState extends State<Body> {
                     children: const [
                       Text('SecureHome'),
                       Text(
-                        'Home Page',
+                        'Activity List',
                         style: TextStyle(fontSize: 12),
                       ),
                     ],
@@ -81,53 +82,102 @@ class _BodyState extends State<Body> {
                 ),
                 child: Column(
                   children: [
-                      Padding(
-                        padding: const EdgeInsets.all(40.0),
-                        child: Center(
-                          child: AnimatedToggleSwitch<bool>.dual(
-                            current: positive,
-                            first: false,
-                            second: true,
-                            dif: 50.0,
-                            borderColor: Colors.transparent,
-                            borderWidth: 5.0,
-                            height: 55,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black26,
-                                spreadRadius: 1,
-                                blurRadius: 2,
-                                offset: Offset(0, 1.5),
-                              ),
-                            ],
-                            onChanged: (b) {
-                              setState(
-                                () {
-                                  positive = b;
-                                },
-                              );
-                              return Future.delayed(Duration(seconds: 2));
-                            },
-                            colorBuilder: (b) => b ? Colors.red : Colors.green,
-                            iconBuilder: (value) =>
-                                value ? Icon(Icons.cancel) : Icon(Icons.check_circle),
-                            textBuilder: (value) => value
-                                ? Center(child: Text('Off'))
-                                : Center(child: Text('On')),
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: Center(
+                        child: AnimatedToggleSwitch<bool>.dual(
+                          current: positive,
+                          first: false,
+                          second: true,
+                          dif: 50.0,
+                          borderColor: Colors.transparent,
+                          borderWidth: 5.0,
+                          height: 55,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              spreadRadius: 1,
+                              blurRadius: 2,
+                              offset: Offset(0, 1.5),
+                            ),
+                          ],
+                          onChanged: (b) {
+                            setState(
+                              () {
+                                positive = b;
+                              },
+                            );
+                            return Future.delayed(Duration(seconds: 2));
+                          },
+                          colorBuilder: (b) => b ? Colors.red : Colors.green,
+                          iconBuilder: (value) => value
+                              ? Icon(Icons.cancel)
+                              : Icon(Icons.check_circle),
+                          textBuilder: (value) => value
+                              ? Center(child: Text('Off'))
+                              : Center(child: Text('On')),
                         ),
                       ),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 100,
+                        child: ListView.builder(
+                          itemCount: activity.length,
+                          itemBuilder: (context, index) {
+                        final item = activity[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0x12FFFFFF),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: ListTile(
+                              title: Padding(
+                                padding: EdgeInsets.only(bottom: 8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      item['name']!,
+                                      style:
+                                          TextStyle(color: Color(0xFFB6B6B6)),
+                                    ),
+                                    Text(item['date']!,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                            color: Color(0xFFB6B6B6))),
+                                  ],
+                                ),
+                              ),
+                              subtitle: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    item['category']!,
+                                    style: TextStyle(color: Color(0xFFB6B6B6)),
+                                  ),
+                                  Text(item['time']!,
+                                      textAlign: TextAlign.right,
+                                      style:
+                                          TextStyle(color: Color(0xFFB6B6B6))),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          // Expanded(
-          //   child: SingleChildScrollView(
-          //     child: ListView.builder(
-          //         itemCount: 10,
-          //   ),
-          // ),
         ],
       ),
     );

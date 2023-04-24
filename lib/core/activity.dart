@@ -34,5 +34,23 @@ const activity = [
     "category": "Smoke detection",
     "time": "5.30 pm",
     "date": "2023.04.22"
+  },
+  {
+    "name": "Fire Alarm",
+    "category": "Smoke detection",
+    "time": "5.30 pm",
+    "date": "2023.04.22"
+  },
+  {
+    "name": "Fire Alarm",
+    "category": "Smoke detection",
+    "time": "5.30 pm",
+    "date": "2023.04.22"
+  },
+  {
+    "name": "Fire Alarm",
+    "category": "Smoke detection",
+    "time": "5.30 pm",
+    "date": "2023.04.22"
   }
 ];
